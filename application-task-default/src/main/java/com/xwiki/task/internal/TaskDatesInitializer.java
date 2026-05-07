@@ -152,7 +152,7 @@ public class TaskDatesInitializer
         while (li.hasPrevious()) {
             MacroBlock macroBlock = li.previous();
             try {
-                if (macroBlock.getChildren() != null) {
+                if (macroBlock.getChildren() != null && !macroBlock.getChildren().isEmpty()) {
                     macroUtils.updateMacroContent(macroBlock,
                         macroUtils.renderMacroContent(macroBlock.getChildren(), Syntax.XWIKI_2_1));
                 }
