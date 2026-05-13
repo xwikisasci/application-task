@@ -39,8 +39,9 @@
   <content>{{velocity}}
 #set ($discard = $xwiki.jsx.use('TaskManager.TaskTemplateList'))
 {{html}}
-&lt;form class='xform'&gt;
-  &lt;input name='outputSyntax' type='hidden' value='plain'&gt;
+&lt;form class='xform' method='POST'&gt;
+  &lt;input name='outputSyntax' type='hidden' value='plain' /&gt;
+  &lt;input name='form_token' type='hidden' value="$!{services.csrf.getToken()}" /&gt;
   &lt;dl&gt;
     &lt;dt&gt;
       &lt;label for='templateName'&gt;$escapetool.xml($services.localization.render('taskmanager.templateList.label'))&lt;/label&gt;
@@ -187,7 +188,7 @@ require(['jquery', 'xwiki-l10n!xwiki-task-template-list-notification-messages'],
     // Check that the template name is not empty.
     if (event.target.parentElement.reportValidity()) {
       let notification = new XWiki.widgets.Notification(escapeHTML(l10n.get('inprogress')), 'inprogress');
-      $.ajax(endpointURL, { data : event.target.parentElement.serialize() }).done((data) =&gt; {
+      $.post(endpointURL, event.target.parentElement.serialize()).done((data) =&gt; {
         notification.replace(new XWiki.widgets.Notification(escapeHTML(l10n.get('done')), 'done'));
         document.location = new XWiki.Document(
             XWiki.Model.resolve(data.templateDocument.reference, XWiki.EntityType.DOCUMENT)

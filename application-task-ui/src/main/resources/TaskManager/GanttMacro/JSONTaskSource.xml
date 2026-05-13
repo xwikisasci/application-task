@@ -133,7 +133,7 @@
       )
     #end
     #if ("$!request.maxTasks" != '')
-      #set ($maxTasks = $numbertool.toNumber($request.maxTasks))
+      #set ($maxTasks = $mathtool.min($mathtool.max($numbertool.toNumber($request.maxTasks), 1), 200))
     #else
       #set ($maxTasks = 50)
     #end

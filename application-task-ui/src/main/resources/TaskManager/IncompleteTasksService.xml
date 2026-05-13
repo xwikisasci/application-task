@@ -73,15 +73,13 @@
       })
       #set ($discard = $result.entries.add($pageInfo))
     #end
-    $response.setContentType('application/json')
-    $jsontool.serialize($result)
+    #jsonResponse($result)
   #elseif ("$!request.docRef" != '' &amp;&amp; $hasAdmin &amp;&amp; $services.csrf.isTokenValid($request.form_token))
     #set ($docRef = $services.model.resolveDocument($request.docRef))
     #set ($discard = $services.task.inferTaskData($docRef))
   #elseif ("$!request.fixAll" != '' &amp;&amp; $hasAdmin &amp;&amp; $services.csrf.isTokenValid($request.form_token))
     #set ($job = $services.task.inferTaskData())
-    $response.setContentType('application/json')
-    $jsontool.serialize({'jobId': $job.status.request.id})
+    #jsonResponse({'jobId': $job.status.request.id})
   #end
 #elseif ($xcontext.action == 'view' &amp;&amp; $hasAdmin &amp;&amp; $services.csrf.isTokenValid($request.form_token))
   #template("job_macros.vm")

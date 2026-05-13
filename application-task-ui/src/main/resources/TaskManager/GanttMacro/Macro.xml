@@ -579,7 +579,8 @@ define('taskgantt-frappe-methods', [
   'taskgantt-utils',
   'taskgantt-ui',
   'taskgantt-service-urls',
-], function ($, taskutil, taskui, taskurls) {
+  'xwiki-meta',
+], function ($, taskutil, taskui, taskurls, xm) {
   /**
    * Custom implementation of trigger_event from the frappe-gantt(v0.6.1) library.
    * Changed: Bind the parent gantt object to 'this' in the event handlers.
@@ -870,6 +871,7 @@ define('taskgantt-frappe-methods', [
 
     let params = {
       progress: newProgress,
+      form_token: xm.form_token,
     };
     if (task.taskClasses.includes('taskgantt-no-due-date')) {
       // If the user interacts with a 'no-due-date' task, automatically set the dates.
@@ -877,7 +879,7 @@ define('taskgantt-frappe-methods', [
       params.endDate = task._end.getTime();
     }
     taskui.setGanttDisabledOverlayVisibility(this, true);
-    $.ajax(taskurls.getUpdateServiceURL(task) + new URLSearchParams(params))
+    $.post(taskurls.getUpdateServiceURL(task), params)
       .done(taskui.getUpdateServiceSuccessCallback(this, task))
       .fail(taskui.getUpdateServiceErrorCallback(this, task));
   };
@@ -899,7 +901,9 @@ define('taskgantt-frappe-methods', [
       new XWiki.widgets.Notification(forbiddenEditReason, 'error', '20');
       return;
     }
-    let params = {};
+    let params = {
+      form_token: xm.form_token,
+    };
     if (newStartDate.getTime() != task.editMetadata.oldStartDate.getTime()) {
       params.startDate = newStartDate.getTime();
     }
@@ -908,7 +912,7 @@ define('taskgantt-frappe-methods', [
     }
 
     taskui.setGanttDisabledOverlayVisibility(this, true);
-    $.ajax(taskurls.getUpdateServiceURL(task) + new URLSearchParams(params))
+    $.post(taskurls.getUpdateServiceURL(task), params)
       .done(taskui.getUpdateServiceSuccessCallback(this, task))
       .fail(taskui.getUpdateServiceErrorCallback(this, task));
   };
