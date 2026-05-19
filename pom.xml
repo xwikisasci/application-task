@@ -29,7 +29,7 @@
   </parent>
   <groupId>com.xwiki.task</groupId>
   <artifactId>application-task</artifactId>
-  <version>3.11.0-rc-4-SNAPSHOT</version>
+  <version>3.11.0-rc-4</version>
   <name>Task Manager Application - Parent POM</name>
   <packaging>pom</packaging>
   <description>The parent POM of the Task Manager Application (Pro).</description>
@@ -41,7 +41,7 @@
     <connection>scm:git:git://github.com/xwikisas/application-task.git</connection>
     <developerConnection>scm:git:git@github.com:xwikisas/application-task.git</developerConnection>
     <url>https://github.com/xwikisas/application-task/tree/master</url>
-    <tag>HEAD</tag>
+    <tag>application-task-3.11.0-rc-4</tag>
   </scm>
   <properties>
     <licensing.version>1.32.2</licensing.version>
