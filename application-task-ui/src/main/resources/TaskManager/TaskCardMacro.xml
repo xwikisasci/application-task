@@ -559,11 +559,18 @@
 ##
 ## Display the status of the task
 #macro(displayCardStatus $taskstatus)
-  #if(!$taskstatus.trim().isEmpty())
-  (% class="col-xs-12 task-card-status" %)
-  (((
-    ${services.icon.render('bell')} [$services.localization.render("TaskManager.TaskManagerClass_status_${taskstatus}")]
-  )))
+  #if (!$taskstatus.trim().isEmpty())
+    #set ($key = "TaskManager.TaskManagerClass_status_$taskstatus")
+    #set ($translation = $services.localization.render($key))
+    #if ($translation == $key)
+      #set ($renderedStatus = $services.rendering.escape($taskstatus, 'xwiki/2.1'))
+    #else
+      #set ($renderedStatus = $services.rendering.escape($translation, 'xwiki/2.1'))
+    #end
+    (% class="col-xs-12 task-card-status" %)
+    (((
+      ${services.icon.render('bell')} [$renderedStatus]
+    )))
   #end
 #end
 #### MACRO displayCardTitle
