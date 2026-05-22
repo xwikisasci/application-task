@@ -122,7 +122,6 @@
               ## avoid double interpreting xwiki syntax.
               : $services.rendering.escape($renderedTaskDescription, 'xwiki/2.1')
             #end
-            #end
           )))
         )))
       )))
