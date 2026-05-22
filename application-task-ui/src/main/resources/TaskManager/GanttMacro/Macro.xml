@@ -1088,6 +1088,16 @@ define('taskgantt-frappe', ['taskgantt-frappe-methods', 'frappe-gantt'], functio
   'frappe-gantt',
   'taskgantt-frappe'
 ], function ($, serviceUrls, l10n, overrideDefs, taskutil, tgtemplates) {
+  function scrollToToday(ganttDiv) {
+    // Scroll to today (if available)
+    const scrolledGanttDiv = ganttDiv.querySelector('svg.gantt').parentNode;
+    const todayMarker = scrolledGanttDiv?.querySelector('.today-highlight');
+    const markerX = Number.parseFloat(todayMarker?.getAttribute('x'));
+    if (todayMarker &amp;&amp; markerX &lt; Number.parseFloat(ganttDiv.querySelector('svg.gantt').getAttribute('width'))) {
+      scrolledGanttDiv.scrollLeft = markerX - scrolledGanttDiv.getBoundingClientRect().width / 2;
+    }
+  }
+
   async function spawnGantt(ganttDiv, idx) {
 
     $(ganttDiv).attr('id', 'taskgantt-gantt' + idx);
@@ -1129,7 +1139,10 @@ define('taskgantt-frappe', ['taskgantt-frappe-methods', 'frappe-gantt'], functio
     // Bind viewmode buttons.
     $('#view-mode-buttons &gt; button.view-mode-button', ganttDiv).on('click', (e) =&gt; {
       gantt.change_view_mode(e.currentTarget.value);
+      scrollToToday(ganttDiv);
     });
+
+    scrollToToday(ganttDiv);
 
     return gantt;
   };
