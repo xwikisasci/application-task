@@ -1105,9 +1105,13 @@ define('taskgantt-frappe', ['taskgantt-frappe-methods', 'frappe-gantt'], functio
     let tasks = await fetch(serviceUrls.getJsonSourceURL(ganttDiv)).then(response =&gt; response.json());
     if (tasks.length == 0) {
       // Frappe breaks if it has no tasks to display, so replace it with an error message.
-      $(ganttDiv).append(tgtemplates.noTasksMessage);
-      $(ganttDiv).find('#view-mode-buttons').empty();
+      if (!$(ganttDiv).find('#ganttNoTasksMessage').length) {
+        $(ganttDiv).append(tgtemplates.noTasksMessage);
+      }
+      $(ganttDiv).find('#view-mode-buttons').toggleClass('hidden', true);
       return;
+    } else {
+      $(ganttDiv).find('#view-mode-buttons').toggleClass('hidden', false);
     }
     tasks.forEach(taskutil.formatTask);
     tasks.forEach((task) =&gt; {
@@ -1146,6 +1150,10 @@ define('taskgantt-frappe', ['taskgantt-frappe-methods', 'frappe-gantt'], functio
 
     return gantt;
   };
+  // Listener so the tasks are displayed when stepping out of WYSIWYG. Otherwise the tasks would be removed.
+  document.on('xwiki:dom:updated', () =&gt; {
+    Promise.all($.map($('.taskgantt'), spawnGantt));
+  });
   Promise.all($.map($('.taskgantt'), spawnGantt));
 });</code>
     </property>
@@ -1841,7 +1849,7 @@ path=$services.webjars.url('org.webjars.npm:frappe-gantt', "dist/frappe-gantt.mi
   &lt;button type="button" class='btn view-mode-button' value="$viewMode"&gt;$escapetool.html($text)&lt;/button&gt;
 #end
 #macro (noTasksMessage)
-  &lt;div class='box'&gt;$escapetool.html($services.localization.render('taskmanager.gantt.macro.noTasks'))&lt;/div&gt;
+  &lt;div class='box' id='ganttNoTasksMessage'&gt;$escapetool.xml($services.localization.render('taskmanager.gantt.macro.noTasks'))&lt;/div&gt;
 #end
 #macro (svgCustomDefs)
   &lt;linearGradient id="fadeGrad"&gt;
@@ -1890,8 +1898,9 @@ path=$services.webjars.url('org.webjars.npm:frappe-gantt', "dist/frappe-gantt.mi
   #set ($discard = $config.put('svgCustomDefs', "#svgCustomDefs"))
   #set ($discard = $config.put('noTasksMessage', "#noTasksMessage"))
   {{html clean='false'}}
-  &lt;script id='taskgantt-config-templates' type='application/json'&gt;$jsontool.serialize($config).replace('&amp;lt;', '\u003C')
-  &lt;/script&gt;
+  &lt;div class='hidden' id='taskgantt-config-templates' type='application/json'&gt;
+    $escapetool.xml($jsontool.serialize($config))
+  &lt;/div&gt;
   {{/html}}
 
 {{html}}
