@@ -113,7 +113,15 @@
                   $services.icon.render('application_view_list')
                   $escapetool.xml($doc.displayPrettyName('description', false, false))
                 &lt;/label&gt;
-              : #if ($xcontext.action == 'preview') $doc.getRenderedContent($request.content, $doc.syntax) #else $doc.getRenderedContent($tdoc.content, $tdoc.syntax.toIdString()) #end
+              #if ($xcontext.action == 'preview')
+                #set ($renderedTaskDescription = $doc.getRenderedContent($request.content, $doc.syntax))
+              #else
+                #set ($renderedTaskDescription = $doc.getRenderedContent($tdoc.content, $tdoc.syntax.toIdString()))
+              #end
+              ## Since getRenderedContent already returns html content, we need to escape it against xwiki syntax to
+              ## avoid double interpreting xwiki syntax.
+              : $services.rendering.escape($renderedTaskDescription, 'xwiki/2.1')
+            #end
             #end
           )))
         )))
