@@ -44,7 +44,7 @@
     <tag>HEAD</tag>
   </scm>
   <properties>
-    <licensing.version>1.32.2</licensing.version>
+    <licensing.version>1.32.3</licensing.version>
     <kanban-macro.version>1.4.3</kanban-macro.version>
     <gantt.version>0.6.1</gantt.version>
     <xwiki.extension.category>application</xwiki.extension.category>
