@@ -55,6 +55,7 @@ TaskManager.administration.addSeverity.submit=Neue Priorität
 TaskManager.adminitration.addProject=Neues Projekt
 TaskManager.adminitration.addStatus=Neuer Status
 TaskManager.adminitration.addSeverity=Neue Priorität
+### Missing: TaskManager.adminitration.templateList=Add Task Template
 
 # Class fields
 TaskManager.TaskManagerClass_name=Aufgabe
@@ -98,6 +99,18 @@ taskmanager.livetable._actions.edit=Bearbeiten
 taskmanager.livetable._actions.delete=Löschen
 taskmanager.livetable.emptyvalue=-
 
+# Template list specific keys
+taskmanager.templateList.label=Name
+taskmanager.templateList.hint=Name der neuen Vorlage
+taskmanager.templateList.button=Neue Vorlage anlegen
+taskmanager.templateList.livetable.taskName=Name Aufgabenvorlage
+taskmanager.templateList.livetable.providerName=Name Vorlagengeber
+taskmanager.templateList.notification.inprogress=Vorlage wird erstellt
+taskmanager.templateList.notification.done=Vorlage erstellt
+taskmanager.templateList.notification.fail=Vorlage konnte nicht erstellt werden
+taskmanager.templateList.notification.fail.conflict=Vorlage existiert bereits
+taskmanager.templateList.notification.fail.unauthorized=Keine Berechtigung
+
 # Live table specific keys
 taskmanager.livetable.name=Aufgabe
 taskmanager.livetable.number=Nr.
@@ -109,7 +122,6 @@ taskmanager.livetable.reporter=Reporter
 taskmanager.livetable.assignee=Zugewiesen
 taskmanager.livetable.duedate=Fälligkeitsdatum
 taskmanager.livetable.creationDate=Erstelldatum
-taskmanager.livetable.owner=Seite
 
 # Notifications for changed tasks
 taskmanager.events.taskChangedEvent.description=Eine Ihnen zugewiesene oder von Ihnen beobachtete Aufgabe wurde bearbeitet
@@ -177,18 +189,6 @@ taskmanager.panel.guest=Sie müssen angemeldet sein, um dieses Menü zu sehen
 taskmanager.entry.name=Aufgabe
 taskmanager.extension.name=Aufgabenverwaltung (Pro)
 
-# Template list specific keys
-taskmanager.templateList.label=Name
-taskmanager.templateList.hint=Name der neuen Vorlage
-taskmanager.templateList.button=Neue Vorlage anlegen
-taskmanager.templateList.livetable.taskName=Name Aufgabenvorlage
-taskmanager.templateList.livetable.providerName=Name Vorlagengeber
-taskmanager.templateList.notification.inprogress=Vorlage wird erstellt
-taskmanager.templateList.notification.done=Vorlage erstellt
-taskmanager.templateList.notification.fail=Vorlage konnte nicht erstellt werden
-taskmanager.templateList.notification.fail.conflict=Vorlage existiert bereits
-taskmanager.templateList.notification.fail.unauthorized=Keine Berechtigung
-
 ## Used to indicate where deprecated keys start
 #@deprecatedstart
 
@@ -209,7 +209,6 @@ taskmanager.notification.statusChange.noId=Aufgabenfortschritt konnte nicht geä
 taskmanager.notification.statusChange.inprogress=Aufgabenfortschritt ändern
 taskmanager.notification.referenceGeneration.fail=Aufgabenreferenz konnte nicht erzeugt werden
 taskmanager.notification.referenceGeneration.inprogress=Aufgabenreferenz erzeugen
-
 taskmanager.livetable.owner=Speicherort
 taskmanager.livetable.completeDate=Abgeschlossen am
 taskmanager.livetable.createDate=Erstelldatum
@@ -222,6 +221,8 @@ rendering.macro.task.parameter.status.name=Status der Aufgabe
 rendering.macro.task.parameter.status.description=Status der Aufgabe angeben
 rendering.macro.task.parameter.id.name=ID
 rendering.macro.task.parameter.id.description=Eindeutige Kennung für die Aufgabe
+### Missing: rendering.macro.task.parameter.reference.name=ID
+### Missing: rendering.macro.task.parameter.reference.description=An unique identifier for the task, relative to the current page.
 rendering.macro.task.parameter.creator.name=Ersteller
 rendering.macro.task.parameter.creator.description=Ersteller der Aufgabe
 rendering.macro.task.parameter.createDate.name=Erstelldatum
@@ -278,13 +279,20 @@ rendering.macro.kanbanboard.parameter.space.name=Bereich
 rendering.macro.kanbanboard.parameter.space.description=Nur Aufgaben in diesem Bereich anzeigen.
 rendering.macro.kanbanboard.parameter.user.name=Benutzer
 rendering.macro.kanbanboard.parameter.user.description=Nur Aufgaben dieses Nutzers anzeigen.
+### Missing: rendering.macro.kanbanboard.parameter.order.name=Order
+### Missing: rendering.macro.kanbanboard.parameter.order.description=Field to order the tasks by. Example: 'name asc', 'doc.date desc', 'reporter asc,assignee desc'.
+### Missing: rendering.macro.kanbanboard.parameter.limit.name=Limit
+### Missing: rendering.macro.kanbanboard.parameter.limit.description=The amount of tasks displayed for each status.
 
 ## Incomplete tasks
 TaskManager.adminitration.incompleteTasks=Offene Aufgaben
 taskmanager.incompleteTasks.find=Offene Aufgaben finden
+### Missing: taskmanager.incompleteTasks.pagination.label=Displaying pages with incomplete tasks {0} - {1} out of {2} total.
 taskmanager.incompleteTasks.find.noTasks=Keine Aufgaben-Makros mit unvollständigen Angaben
 taskmanager.incompleteTasks.fixAll=Fehlende Angaben in alle Makros einfügen
 taskmanager.incompleteTasks.refresh=Aktualisieren
+### Missing: taskmanager.incompleteTasks.nextTasks=Next
+### Missing: taskmanager.incompleteTasks.previousTasks=Previous
 taskmanager.incompleteTasks.fix=Fehlende Angaben einfügen
 taskmanager.incompleteTasks.job.finish.error=Fehler beim Einfügen der fehlenden Angaben
 taskmanager.incompleteTasks.job.finish.canceled=Der Prozess wurde abgebrochen
@@ -305,5 +313,8 @@ TaskManager.TaskManagerClass_project_empty=None
 taskmanager.spacepicker.modal.title=Bereichsauswahl
 taskmanager.spacepicker.modal.close=Schließen
 taskmanager.spacepicker.modal.select=Bereich auswählen
+
+## CKEditor Plugin
+### Missing: ckeditor.plugin.task-insert.placeholder=Type your task here.
 </content>
 </xwikidoc>

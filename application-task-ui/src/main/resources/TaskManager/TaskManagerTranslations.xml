@@ -36,29 +36,22 @@
   <minorEdit>false</minorEdit>
   <syntaxId>plain/1.0</syntaxId>
   <hidden>true</hidden>
-  <content>
-# Application Panel title
+  <content># Application Panel title
 TaskManager.home.title=Task Manager
 TaskManager.panels.name=Task Manager
-
 TaskManager.administration.noRights=You need to be an Administrator
-
 TaskManager.administration.livetable.doc.date=Date
 TaskManager.administration.livetable.doc.author=Last Author
 TaskManager.administration.livetable._actions=Actions
 TaskManager.administration.livetable.order=Order
-
 TaskManager.administration.addProject.label=Project
 TaskManager.administration.addProject.submit=Add Project
-
 TaskManager.administration.addStatus.label=Status
 TaskManager.administration.addStatus.orderPlaceholder=order
 TaskManager.administration.addStatus.statusPlaceholder=name
 TaskManager.administration.addStatus.submit=Add Status
-
 TaskManager.administration.addSeverity.label=Priority
 TaskManager.administration.addSeverity.submit=Add Priority
-
 TaskManager.adminitration.addProject=Add Project
 TaskManager.adminitration.addStatus=Add Status
 TaskManager.adminitration.addSeverity=Add Priority
@@ -157,7 +150,7 @@ taskmanager.gantt.taskEdit.comment=Edited through the Gantt Diagram UI
 taskmanager.gantt.task.noDueDate=No due date set
 taskmanager.gantt.task.unknownTaskTitle=Unknown Task
 taskmanager.gantt.macro.title=Gantt Diagram
-taskmanager.gantt.macro.wait=Please wait...
+taskmanager.gantt.macro.wait=Please wait…
 taskmanager.gantt.macro.date.from=From:
 taskmanager.gantt.macro.date.to=To:
 taskmanager.gantt.macro.projects=Projects:
@@ -194,7 +187,6 @@ taskmanager.panel.guest=You have to be logged in in order to view this panel
 
 # Template provider
 taskmanager.entry.name=Task
-
 taskmanager.extension.name=Task Manager Application (Pro)
 
 ## Used to indicate where deprecated keys start
@@ -206,7 +198,6 @@ taskmanager.extension.name=Task Manager Application (Pro)
 TaskManager.StatusClass_status_InProgress=In Progress
 TaskManager.StatusClass_status_ToDo=To Do
 TaskManager.StatusClass_status_Done=Done
-
 TaskManager.SeverityClass_severity_Low=Low
 TaskManager.SeverityClass_severity_Medium=Medium
 TaskManager.SeverityClass_severity_High=High
@@ -218,22 +209,18 @@ taskmanager.notification.statusChange.noId=Failed to change the status because t
 taskmanager.notification.statusChange.inprogress=Changing status..
 taskmanager.notification.referenceGeneration.fail=Failed to generate a task reference
 taskmanager.notification.referenceGeneration.inprogress=Generating task reference
-
 taskmanager.livetable.owner=Location
 taskmanager.livetable.completeDate=Completed on
 taskmanager.livetable.createDate=Creation date
 taskmanager.livetable.noRights=You don't have view rights for the document that contains this task.
-
-taskmanager.macro.tasks.noRights=Some tasks have no been displayed because you don't have the rights to view them.
-
+taskmanager.macro.tasks.noRights=Some tasks have not been displayed because you don't have the rights to view them.
 taskmanager.picker.taskpage.noValue=Choose a task.
-
 rendering.macro.task.name=Task
-rendering.macro.task.description=Create a task that you can assign an user to using the mention macro and use the date macro to set a deadline.
+rendering.macro.task.description=Create a task that you can assign a user to using the mention macro and use the date macro to set a deadline.
 rendering.macro.task.parameter.status.name=The status of the task.
 rendering.macro.task.parameter.status.description=Specify what is the current status of the task.
 rendering.macro.task.parameter.id.name=ID
-rendering.macro.task.parameter.id.description=An unique identifier for the task, relative to the current page.
+rendering.macro.task.parameter.id.description=A unique identifier for the task, relative to the current page.
 rendering.macro.task.parameter.reference.name=ID
 rendering.macro.task.parameter.reference.description=An unique identifier for the task, relative to the current page.
 rendering.macro.task.parameter.creator.name=Creator
@@ -244,7 +231,6 @@ rendering.macro.task.parameter.completeDate.name=Completion date
 rendering.macro.task.parameter.completeDate.description=If you set the status of the task as "Done", you should also set the completion date.
 rendering.macro.task.parameter.idDisplayed.name=Is ID Displayed?
 rendering.macro.task.parameter.idDisplayed.description=Denotes whether the id and the link to the task page should be displayed.
-
 rendering.macro.checkbox.name=Checkbox
 rendering.macro.checkbox.description=Display a simple checkbox alongside some rich content.
 rendering.macro.checkbox.content.description=Rich content that describes this to-do item.
@@ -252,7 +238,6 @@ rendering.macro.checkbox.parameter.id.name=Id
 rendering.macro.checkbox.parameter.id.description=Uniquely identifies the checkbox on the current page. It is recommended to use the autofilled value.
 rendering.macro.checkbox.parameter.checked.name=Checked?
 rendering.macro.checkbox.parameter.checked.description=Denotes whether the checkbox is ticked or not.
-
 rendering.macro.task-report.name=Task report macro
 rendering.macro.task-report.description=Create a custom report of the tasks within the wiki.
 rendering.macro.task-report.parameter.pages.name=Pages filter
@@ -270,12 +255,11 @@ rendering.macro.task-report.parameter.status.description=Display all the tasks t
 rendering.macro.task-report.parameter.limit.name=Live table limit
 rendering.macro.task-report.parameter.limit.description=Specifies how many tasks should be displayed on a single page.
 rendering.macro.task-report.parameter.columns.name=Live table display columns
-rendering.macro.task-report.parameter.columns.description=A list task properties that you want the table to display. The possible values are: name, duedate, assignee, owner, reporter, number, status, completeDate, createDate.
+rendering.macro.task-report.parameter.columns.description=A list of task properties that you want the table to display. The possible values are: name, duedate, assignee, owner, reporter, number, status, completeDate, createDate.
 rendering.macro.task-report.parameter.sortBy.name=Sort By
 rendering.macro.task-report.parameter.sortBy.description=The column that will be used to order the table.
 rendering.macro.task-report.parameter.id.name=Table ID
 rendering.macro.task-report.parameter.id.description=An unique identifier for the table. If the field is not completed, a random ID will be assigned.
-
 TaskManager.TaskManagerConfigurationClass_notSkippedFoldEvents=The fold events during which the task listener will execute.
 TaskManager.TaskManagerConfigurationClass_notSkippedFoldEvents.hint=In order to sync the task macros and task pages, the application makes use of listeners that react whenever a page is modified. These listeners do not execute during Fold Events (processes that operate on numerous documents). This property lists the exceptions to that rule. By default, the listeners should be executed during the "org.xwiki.filter.job.FilterConversionStarted" event because we want the task macros to function out of the post after an import/migration. You can add or remove fold events based on your preferences. The values should be comma separated.
 TaskManager.TaskManagerConfigurationClass_defaultInlineStatus=The status that will be set to newly created task macros.
@@ -331,7 +315,8 @@ taskmanager.spacepicker.modal.close=Close
 taskmanager.spacepicker.modal.select=Select space
 
 ## CKEditor Plugin
-ckeditor.plugin.task-insert.placeholder=Type your task here.</content>
+ckeditor.plugin.task-insert.placeholder=Type your task here.
+</content>
   <object>
     <name>TaskManager.TaskManagerTranslations</name>
     <number>0</number>
