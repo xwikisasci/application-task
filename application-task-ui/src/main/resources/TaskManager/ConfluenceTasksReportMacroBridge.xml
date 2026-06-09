@@ -627,7 +627,7 @@ $taskReportCall
       <name>assignees</name>
     </property>
     <property>
-      <type>com.xwiki.task.UserReferenceList</type>
+      <type>java.util.List&lt;org.xwiki.user.UserReference&gt;</type>
     </property>
   </object>
   <object>
@@ -718,7 +718,7 @@ $taskReportCall
       <name>creators</name>
     </property>
     <property>
-      <type>com.xwiki.task.UserReferenceList</type>
+      <type>java.util.List&lt;org.xwiki.user.UserReference&gt;</type>
     </property>
   </object>
   <object>

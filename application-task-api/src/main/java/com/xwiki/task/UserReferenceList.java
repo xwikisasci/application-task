@@ -30,8 +30,10 @@ import org.xwiki.user.UserReference;
  *
  * @version $Id$
  * @since 3.0
+ * @deprecated since 3.11.0 use `java.util.List<org.xwiki.user.UserReference>` instead
  */
 @Unstable
+@Deprecated
 public class UserReferenceList extends ArrayList<UserReference>
 {
 }
