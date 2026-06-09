@@ -30,7 +30,7 @@ import org.xwiki.user.UserReference;
  *
  * @version $Id$
  * @since 3.0
- * @deprecated since 3.11.0 use `java.util.List<org.xwiki.user.UserReference>` instead
+ * @deprecated since 3.11.0 use `java.util.List&lt;org.xwiki.user.UserReference&gt;` instead
  */
 @Unstable
 @Deprecated
