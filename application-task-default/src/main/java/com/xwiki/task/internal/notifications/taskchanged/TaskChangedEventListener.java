@@ -20,7 +20,9 @@
 
 package com.xwiki.task.internal.notifications.taskchanged;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -54,6 +56,8 @@ import com.xwiki.task.model.Task;
 @Named("com.xwiki.task.internal.notifications.taskchanged.TaskChangedEventListener")
 public class TaskChangedEventListener extends AbstractEventListener
 {
+    static final String USER_SEPARATOR = ",";
+
     @Inject
     private WatchedEntityFactory watchedEntityFactory;
 
@@ -89,10 +93,18 @@ public class TaskChangedEventListener extends AbstractEventListener
         }
         WatchedLocationReference docRef =
             watchedEntityFactory.createWatchedLocationReference(taskChangedEvent.getDocument().getDocumentReference());
-        // In order to receive notifications, watch the task page for the newly assigned user.
-        watchTask(docRef, (String) taskChangedEvent.getCurrentValue());
-        // In order to stop receiving notifications, unwatch the task page for the unassigned user.
-        unwatchTask(docRef, (String) taskChangedEvent.getPreviousValue());
+        Set<String> oldUsers = null == taskChangedEvent.getPreviousValue() ? Set.of()
+            : Set.of(((String) taskChangedEvent.getPreviousValue()).split(USER_SEPARATOR));
+        Set<String> newUsers = null == taskChangedEvent.getCurrentValue() ? Set.of()
+            : Set.of(((String) taskChangedEvent.getCurrentValue()).split(USER_SEPARATOR));
+        // In order to receive notifications, watch the task page for the newly assigned users.
+        Set<String> tempSet = new HashSet<>(newUsers);
+        tempSet.removeAll(oldUsers);
+        tempSet.forEach(username -> watchTask(docRef, username));
+        // In order to stop receiving notifications, unwatch the task page for the unassigned users.
+        tempSet = new HashSet<>(oldUsers);
+        tempSet.removeAll(newUsers);
+        tempSet.forEach(username -> unwatchTask(docRef, username));
     }
 
     private boolean hasTaskNotificationPreferenceEnabled(DocumentReference user)
@@ -104,9 +116,8 @@ public class TaskChangedEventListener extends AbstractEventListener
                 preference -> preference.isNotificationEnabled() && TaskChangedEvent.class.getCanonicalName()
                     .equals(preference.getProperties().get(NotificationPreferenceProperty.EVENT_TYPE)));
         } catch (NotificationException e) {
-            logger.warn(
-                "Failed to retrieve the notification preferences for user [{}]. Cause: [{}].",
-                user, ExceptionUtils.getRootCauseMessage(e));
+            logger.warn("Failed to retrieve the notification preferences for user [{}]. Cause: [{}].", user,
+                ExceptionUtils.getRootCauseMessage(e));
             return false;
         }
     }
